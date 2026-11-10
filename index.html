@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Tire Inventory</title>
+  </head>
+  <body>
+    <h1>Tire Inventory</h1>
+    <form id="tire-form">
+      <label for="tire-brand">Tire Brand</label>
+      <input type="text" required id="tire-brand" />
+      <label for="tire-size">Size</label>
+      <input type="text" required id="tire-size" />
+      <label for="tire-quantity">Quantity</label>
+      <input type="number" required id="tire-quantity" />
+      <label for="tire-price">Price</label>
+      <input type="number" id="tire-price" step="0.01" required />
+      <label for="tire-season">Season</label>
+      <select id="tire-season">
+        <option value="summer">Summer</option>
+        <option value="winter">Winter</option>
+        <option value="all-season">All Season</option>
+        <option value="farm-implement">Farm Implement</option>
+      </select>
+      <button type="submit" class="add-button">Add Tire</button>
+    </form>
+
+    <input type="text" id="tire-search" placeholder="Search by brand/size" />
+    <select id="tire-finder">
+      <option value="all">All</option>
+      <option value="summer">Summer</option>
+      <option value="winter">Winter</option>
+      <option value="all-season">All Season</option>
+      <option value="farm-implement">Farm Implement</option>
+    </select>
+    <button id="search-button">Search</button>
+    <div id="tire-list"></div>
+  </body>
+</html>

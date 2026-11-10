@@ -1,0 +1,216 @@
+/* ============================================================
+   TIRE INVENTORY - "CLEAN LIGHT" STYLE
+   Every rule has a note explaining what it does.
+
+   COLOR CHEAT SHEET (used throughout this file):
+     #F4F5F7  light gray   -> page background
+     #FFFFFF  white        -> cards (form + tire rows)
+     #E5E7EB  pale gray    -> card borders
+     #D1D5DB  medium gray  -> input borders
+     #1F2937  dark gray    -> main text (softer than pure black)
+     #6B7280  muted gray   -> labels / secondary text
+     #2563EB  blue         -> buttons and focus highlight
+     #1D4ED8  darker blue  -> button hover
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. RESET
+   The * selector means "every element on the page."
+   ------------------------------------------------------------ */
+* {
+  box-sizing: border-box; /* padding and border count INSIDE an element's width,
+                             so width: 100% never overflows its container.
+                             Almost every real project starts with this line. */
+}
+
+
+/* ------------------------------------------------------------
+   2. THE PAGE
+   ------------------------------------------------------------ */
+body {
+  font-family: Arial, Helvetica, sans-serif; /* clean modern font instead of the default Times.
+                                                The browser uses the first one it has. */
+  background-color: #F4F5F7;  /* light gray page so the white cards stand out */
+  color: #1F2937;             /* default text color for everything */
+  max-width: 1000px;           /* stop the app from stretching across wide screens */
+  margin: 40px auto;          /* 40px space on top/bottom; "auto" on the sides
+                                 centers the page horizontally */
+  padding: 0 16px;            /* breathing room on the sides for phones */
+}
+
+
+/* ------------------------------------------------------------
+   3. THE HEADING
+   ------------------------------------------------------------ */
+h1 {
+  font-size: 28px;      /* size of the title */
+  margin-bottom: 24px;  /* space between the title and the form */
+}
+
+
+/* ------------------------------------------------------------
+   4. THE ADD FORM (turns it into a white "card")
+   #tire-form targets the element with id="tire-form".
+   ------------------------------------------------------------ */
+#tire-form {
+  background-color: #FFFFFF;  /* white card */
+  border: 1px solid #E5E7EB;  /* thin pale border around the card */
+  border-radius: 8px;         /* rounded corners */
+  padding: 20px;              /* space between the card's edge and its contents */
+  margin-bottom: 24px;        /* space between the form and the search bar */
+
+  display: flex;              /* turn on flexbox layout for the items inside */
+  flex-direction: column;     /* stack everything top-to-bottom instead of side-by-side.
+                                 This is what puts each label ABOVE its input. */
+  gap: 6px;                   /* even spacing between every stacked item */
+}
+
+
+/* ------------------------------------------------------------
+   5. LABELS
+   ------------------------------------------------------------ */
+label {
+  font-size: 14px;       /* slightly smaller than normal text */
+  color: #6B7280;        /* muted gray so the inputs are the focus */
+  margin-top: 8px;       /* extra space ABOVE each label to separate the fields */
+}
+
+
+/* ------------------------------------------------------------
+   6. INPUTS AND DROPDOWNS (applies to both forms)
+   A comma means "apply these styles to BOTH selectors."
+   ------------------------------------------------------------ */
+input,
+select {
+  font-size: 15px;            /* readable text inside the boxes */
+  padding: 10px 12px;         /* 10px top/bottom, 12px left/right inside the box */
+  border: 1px solid #D1D5DB;  /* light gray border */
+  border-radius: 6px;         /* slightly rounded corners */
+  background-color: #FFFFFF;  /* white inside */
+}
+
+/* :focus = "while the user is clicked into / typing in this box" */
+input:focus,
+select:focus {
+  outline: none;                 /* remove the browser's default focus outline... */
+  border-color: #2563EB;         /* ...and replace it with a blue border instead */
+}
+
+
+/* ------------------------------------------------------------
+   7. BUTTONS (Add Tire + Search)
+   ------------------------------------------------------------ */
+/* ---------- Tire card buttons ---------- */
+
+/* Shared look for all card buttons */
+button {
+  font-size: 15px;
+  padding: 10px 18px;
+  background-color: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1D4ED8;
+}
+
+
+#tire-list .edit-button,
+#tire-list .delete-button,
+#tire-list .apply-button {
+  color: #FFFFFF;
+  margin-left: 8px;
+}
+
+/* Edit: gray, and pushes the button group to the right */
+#tire-list .edit-button {
+  background-color: #6B7280;
+  margin-left: auto;
+}
+#tire-list .edit-button:hover {
+  background-color: #4B5563;
+}
+
+/* Delete: red */
+#tire-list .delete-button {
+  background-color: #EF4444;
+}
+#tire-list .delete-button:hover {
+  background-color: #DC2626;
+}
+
+/* Apply: green */
+#tire-list .apply-button {
+  background-color: #16A34A;
+}
+#tire-list .apply-button:hover {
+  background-color: #15803D;
+}
+
+/* Quantity input inside the tire cards */
+#tire-list input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+
+#tire-list .tire-info {
+  font-size: 15px;
+  font-weight: bold;
+  color: #1F2937;  
+  font-family: Arial, sans-serif;
+}
+
+#tire-list .low-stock {
+  background-color: #fef9c3;
+  border-color: #facc15;
+}
+
+#tire-list .low-stock-label {
+  margin: 0 12px;
+  padding: 4px 10px;
+  background-color: #facc15;
+  color: #713f12;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+/* ------------------------------------------------------------
+   8. SEARCH BAR
+   These sit side by side by default, which works well here.
+   ------------------------------------------------------------ */
+#tire-search {
+  width: 240px;               /* give the search box a fixed, comfortable width */
+}
+
+#tire-finder {
+  margin: 0 6px;              /* small gap on the left and right of the dropdown */
+}
+
+
+/* ------------------------------------------------------------
+   9. THE TIRE LIST
+   ------------------------------------------------------------ */
+#tire-list {
+  margin-top: 20px;           /* space between the search bar and the results */
+}
+
+/* "#tire-list div" = every <div> INSIDE #tire-list.
+   Your JavaScript creates one div per tire, so this styles each tire row.
+   (No class needed, the space in the selector means "inside of.") */
+#tire-list div {
+  background-color: #FFFFFF;  /* white card for each tire */
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;         /* gap between tire cards */
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
